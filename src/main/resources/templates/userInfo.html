@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>用户信息</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th>姓名</th>
+        <th>年龄</th>
+        <th>性别</th>
+    </tr>
+    <tr th:each="user:${userList}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.sex==1?'女':'男'}"></td>
+    </tr>
+
+    <ul>
+        <li th:each="user:${userList}" th:text="${user.username}"></li>
+    </ul>
+    <!--
+    user : 第1个值,代表每次迭代出对象,名字任意取
+    iterStat : 第2个值,代表每次迭代器内置对象, 名字任意取, 并有如下属性:
+        index : 当前迭代下标 0 开始
+        count : 当前迭代下标 1 开始
+        size : 获取总记录数
+        current : 当前迭代出的对象
+        even/odd : 当前迭代是偶数还是奇数 (1开始算,返回布尔值)
+        first : 当前是否为第一个元素
+        last : 当前是否为最后一个元素
+     -->
+    <tr th:each="user,iterStat:${userList}">
+        <td th:text="${user.username}"></td>
+        <td th:text="${user.age}"></td>
+        <td th:text="${user.sex==1?'女':'男'}"></td>
+        <td th:text="${iterStat.index}"></td>
+        <td th:text="${iterStat.count}"></td>
+        <td th:text="${iterStat.size}"></td>
+        <td th:text="${iterStat.current}"></td>
+        <td th:text="${iterStat.even}"></td>
+        <td th:text="${iterStat.first}"></td>
+        <td th:text="${iterStat.last}"></td>
+    </tr>
+</table>
+</body>
+</html>
